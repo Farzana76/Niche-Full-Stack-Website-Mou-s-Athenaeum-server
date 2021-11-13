@@ -54,30 +54,30 @@ async function run(){
             res.json(result);
         });
 
-        // // DELETE API of my orders
-        // app.delete('/orders/:id', async (req, res) => {
-        //     // console.log('hit the post api', id);
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await ordersCollection.deleteOne(query);
-        //     res.json(result);
-        //     // res.json("delete");
-        // });
+        // DELETE API of my orders
+        app.delete('/orders/:id', async (req, res) => {
+            // console.log('hit the post api', id);
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await ordersCollection.deleteOne(query);
+            res.json(result);
+            // res.json("delete");
+        });
 
-        // //UPDATE API
-        // app.put('/orders/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const updatedOrder = req.body;
-        //     const filter = { _id: ObjectId(id) };
-        //     const options = { upsert: true };
-        //     const updateDoc = {
-        //         $set: {
-        //             status: 'Approved'
-        //         },
-        //     };
-        //     const result = await ordersCollection.updateOne(filter, updateDoc, options);
-        //     res.json(result);
-        // })
+        //UPDATE API
+        app.put('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedOrder = req.body;
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: 'Shipped'
+                },
+            };
+            const result = await ordersCollection.updateOne(filter, updateDoc, options);
+            res.json(result);
+        })
 
     }
     finally{
