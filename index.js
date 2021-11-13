@@ -77,7 +77,17 @@ async function run(){
             };
             const result = await ordersCollection.updateOne(filter, updateDoc, options);
             res.json(result);
-        })
+        });
+
+        // DELETE API of my products
+        app.delete('/products/:id', async (req, res) => {
+            // console.log('hit the post api', id);
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await productCollection.deleteOne(query);
+            res.json(result);
+            // res.json("delete");
+        });
 
     }
     finally{
